@@ -1,5 +1,6 @@
 package com.mcdull.githubapp.ui.home
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mcdull.githubapp.R
 import com.mcdull.githubapp.model.Repository
+import com.mcdull.githubapp.ui.detail.RepoDetailActivity
 
 class RepoAdapter : ListAdapter<Repository, RepoAdapter.ViewHolder>(RepoDiffCallback()) {
     // 添加点击监听接口
@@ -23,15 +25,18 @@ class RepoAdapter : ListAdapter<Repository, RepoAdapter.ViewHolder>(RepoDiffCall
         val name: TextView = itemView.findViewById(R.id.repoName)
         val description: TextView = itemView.findViewById(R.id.repoDescription)
         val stars: TextView = itemView.findViewById(R.id.repoStars)
+        
         init {
             itemView.setOnClickListener {
-                onItemClickListener?.invoke(adapterPosition)
+                val repo = getItem(adapterPosition)
+                repo?.let {
+                    val context = itemView.context
+                    val intent = Intent(context, RepoDetailActivity::class.java).apply {
+                        putExtra("repo_data", repo) // 需要让Repository实现Parcelable
+                    }
+                    context.startActivity(intent)
+                }
             }
-            // 添加按压效果
-            itemView.background = ContextCompat.getDrawable(
-                itemView.context,
-                R.drawable.selector_item_bg
-            )
         }
     }
 

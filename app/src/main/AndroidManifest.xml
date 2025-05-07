@@ -38,5 +38,6 @@
                     android:scheme="githubapp" />
             </intent-filter>
         </activity>
+        <activity android:name="com.mcdull.githubapp.ui.detail.RepoDetailActivity" />
     </application>
 </manifest>

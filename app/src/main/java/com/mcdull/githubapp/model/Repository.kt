@@ -1,16 +1,22 @@
 package com.mcdull.githubapp.model
 
 import com.google.gson.annotations.SerializedName
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Repository(
-    @SerializedName("id") val id: Long,
-    @SerializedName("name") val name: String,
-    @SerializedName("full_name") val fullName: String,
-    @SerializedName("html_url") val htmlUrl: String,
-    @SerializedName("description") val description: String?,
-    @SerializedName("stargazers_count") val stars: Int,
-    @SerializedName("watchers_count") val watchers: Int,
-    @SerializedName("language") val language: String,
-    @SerializedName("created_at") val createdAt: String,
-    @SerializedName("updated_at") val updatedAt: String
-)
+    val id: Long,
+    val name: String,
+    val full_name: String,
+    val description: String?,
+    val html_url: String,
+    val stargazers_count: Int,
+    val forks_count: Int,
+    val language: String?,
+    val updated_at: String
+) : Parcelable {
+    val stars get() = stargazers_count
+    val forks get() = forks_count
+    val updatedAt get() = updated_at
+}
