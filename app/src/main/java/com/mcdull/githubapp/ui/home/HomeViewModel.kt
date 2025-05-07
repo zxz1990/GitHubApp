@@ -33,7 +33,7 @@ class HomeViewModel : ViewModel() {
                 val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
                 val sevenDaysAgo = dateFormat.format(calendar.time)
 
-                val result = RetrofitClient.apiService.searchRecentJavaRepositories(
+                val result = RetrofitClient.apiService.searchRepositories(
                     queries = listOf("language:java", "created:>${sevenDaysAgo}")
                 )
                 _repositories.value = result

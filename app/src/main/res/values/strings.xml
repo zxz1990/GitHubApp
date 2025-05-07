@@ -4,4 +4,7 @@
     <string name="title_trending_topics">Topics</string>
     <string name="title_search">Search</string>
     <string name="title_profile">Profile</string>
+    <string name="select_language">选择编程语言</string>
+    <string name="search_hint">输入搜索关键词</string>
+    <string name="search">搜索</string>
 </resources>
