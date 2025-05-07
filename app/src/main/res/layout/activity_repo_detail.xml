@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp">
@@ -11,50 +12,40 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tvRepoName"
+            android:id="@+id/tvContentTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:textStyle="bold"/>
-        
-        <!-- 添加更多详情字段 -->
-        <TextView
-            android:id="@+id/tvDescription"
+            android:layout_marginTop="16dp"
+            android:text="文件内容："
+            android:textStyle="bold" />
+
+        <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"/>
-            
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="16dp">
-            
+            android:layout_marginTop="8dp">
+
             <TextView
-                android:id="@+id/tvStars"
+                android:id="@+id/tvContentPath"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_star"/>
-                
-            <TextView
-                android:id="@+id/tvForks"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:drawableStart="@drawable/ic_fork"/>
-                
-            <TextView
-                android:id="@+id/tvLanguage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"/>
-        </LinearLayout>
-        
-        <TextView
-            android:id="@+id/tvUpdatedAt"
+                android:textColor="@color/teal_700" />
+
+        </HorizontalScrollView>
+
+        <!--        <ScrollView-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="300dp"-->
+        <!--            android:layout_marginTop="8dp">-->
+
+        <!-- 替换原有内容展示区域 -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvContents"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"/>
-            
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_content" />
+
+        <!--        </ScrollView>-->
+
     </LinearLayout>
 </ScrollView>

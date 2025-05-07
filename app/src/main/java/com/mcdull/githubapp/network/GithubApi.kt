@@ -1,6 +1,7 @@
 package com.mcdull.githubapp.network
 
 import OAuthResponse
+import com.mcdull.githubapp.model.ContentResponse
 import com.mcdull.githubapp.model.GitHubSearchResponse
 import com.mcdull.githubapp.model.Repository
 import retrofit2.Response
@@ -9,6 +10,7 @@ import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface GitHubApi {
@@ -29,6 +31,13 @@ interface GitHubApi {
         @Query("sort") sort: String = "updated",
         @Query("direction") direction: String = "desc"
     ): Response<List<Repository>>
+
+    @GET("repos/{owner}/{repo}/contents/{path}")
+    suspend fun getRepoContent(
+        @Path("owner") owner: String,
+        @Path("repo") repo: String,
+        @Path("path") path: String
+    ): Response<List<ContentResponse>>
 }
 
 interface OAuthApi {
