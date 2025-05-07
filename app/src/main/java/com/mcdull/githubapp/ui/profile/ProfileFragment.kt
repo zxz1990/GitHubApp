@@ -6,17 +6,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.mcdull.githubapp.databinding.FragmentProfileBinding
 import androidx.lifecycle.ViewModelProvider
+import com.mcdull.githubapp.user.UserManager
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class ProfileFragment : Fragment() {
     companion object {
         private const val TAG = "ProfileFragment"
     }
 
+    @Inject
+    lateinit var userManager: UserManager
+
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: ProfileViewModel
+    private val viewModel: ProfileViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,7 +32,7 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
-        viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
+//        viewModel = ViewModelProvider(this)[ProfileViewModel::class.java]
         setupObservers()
         setupLoginButton()
         return binding.root

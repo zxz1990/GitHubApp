@@ -1,13 +1,14 @@
 package com.mcdull.githubapp.data
 
 import OAuthResponse
-import android.content.SharedPreferences
 import com.mcdull.githubapp.network.OAuthApi
 import java.net.URLEncoder
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class AuthRepository(
+@Singleton
+class AuthRepository @Inject constructor(
     private val apiService: OAuthApi,
-    private val prefs: SharedPreferences?
 ) {
     private val clientId = "Iv23li0Zdy5dDrLuJynv"
     private val clientSecret = "add0af59c0ff9fef62b6bbdc8ff49f6a0e9f1925"

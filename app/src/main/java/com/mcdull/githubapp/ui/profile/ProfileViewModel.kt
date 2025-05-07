@@ -10,19 +10,29 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mcdull.githubapp.data.AuthRepository
 import com.mcdull.githubapp.network.OAuthClient
+import com.mcdull.githubapp.user.UserManager
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 
-class ProfileViewModel(
+@HiltViewModel
+class ProfileViewModel @Inject constructor(
+    private val userManager: UserManager
 ) : ViewModel() {
-    companion object{
+    companion object {
         private const val TAG = "ProfileViewModel"
     }
-    
+
+    // 使用userManager管理用户状态
+//    fun checkLoginState(): Boolean {
+//        return userManager.isLoggedIn
+//    }
+
     private val _authState = MutableLiveData<AuthState>()
     val authState: LiveData<AuthState> = _authState
     private val authRepository: AuthRepository by lazy {
-        AuthRepository(OAuthClient.apiService, null)
+        AuthRepository(OAuthClient.apiService)
 
     }
 
@@ -45,6 +55,7 @@ class ProfileViewModel(
             try {
                 val token = authRepository.exchangeCodeForToken(code)
                 Log.i(TAG, "handleAuthCallback: token = ${token}")
+                userManager.saveToken(token!!.accessToken)
                 _authState.value = AuthState.Success(token!!.accessToken)
             } catch (e: Exception) {
                 Log.e(TAG, "handleAuthCallback: error", e)

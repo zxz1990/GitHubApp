@@ -1,6 +1,13 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+//    alias(libs.plugins.hilt)
+//
+//    id("kotlin-kapt")
+
+
+    id("com.google.devtools.ksp")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -47,6 +54,13 @@ dependencies {
     // Coroutines
     implementation(libs.coroutines.android)
     implementation(libs.coroutines.core)
+
+    // Hilt
+
+    implementation("com.google.dagger:hilt-android:2.56.1")
+    ksp("com.google.dagger:hilt-android-compiler:2.56.1")
+//    implementation(libs.hilt.android)
+//    kapt(libs.hilt.compiler)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
