@@ -1,14 +1,18 @@
 package com.mcdull.githubapp.network
 
-import OAuthResponse
+import com.mcdull.githubapp.model.OAuthResponse
+import com.google.gson.annotations.SerializedName
 import com.mcdull.githubapp.model.ContentResponse
 import com.mcdull.githubapp.model.GitHubSearchResponse
+import com.mcdull.githubapp.model.IssueResponse
 import com.mcdull.githubapp.model.Repository
 import retrofit2.Response
+import retrofit2.http.Body
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.Headers
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -38,7 +42,27 @@ interface GitHubApi {
         @Path("repo") repo: String,
         @Path("path") path: String
     ): Response<List<ContentResponse>>
+
+    @POST("repos/{owner}/{repo}/issues")
+    @Headers(
+        "Accept: application/vnd.github+json",
+        "X-GitHub-Api-Version: 2022-11-28"
+    )
+    suspend fun raiseIssue(
+        @Header("Authorization") token: String,
+        @Path("owner") owner: String,
+        @Path("repo") repo: String,
+        @Body issueRequest: IssueRequest
+    ): Response<IssueResponse>
 }
+
+data class IssueRequest(
+    @SerializedName("title") val title: String,
+    @SerializedName("body") val body: String,
+    @SerializedName("assignees") val assignees: List<String>? = null,
+    @SerializedName("milestone") val milestone: Int? = null,
+    @SerializedName("labels") val labels: List<String>? = null
+)
 
 interface OAuthApi {
 

@@ -1,6 +1,6 @@
 package com.mcdull.githubapp.data
 
-import OAuthResponse
+import com.mcdull.githubapp.model.OAuthResponse
 import com.mcdull.githubapp.network.OAuthApi
 import java.net.URLEncoder
 import javax.inject.Inject
