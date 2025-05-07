@@ -27,7 +27,11 @@ class RepoDetailViewModel constructor(
             _repoContent.value = Result.loading()
             try {
                 val response = RetrofitClient.apiService.getRepoContent(owner, repo, path)
-                _repoContent.value = Result.success(response.body()!!)
+                val sortedList = response.body()?.sortedWith(compareBy(
+                    { it.type != "dir" },  // 目录优先
+                    { it.name.toLowerCase() } // 名称排序
+                ))
+                _repoContent.value = Result.success(sortedList!!)
             } catch (e: Exception) {
                 _repoContent.value = Result.error(e)
             }

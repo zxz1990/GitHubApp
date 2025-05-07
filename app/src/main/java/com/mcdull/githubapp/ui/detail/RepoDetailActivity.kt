@@ -23,10 +23,21 @@ class RepoDetailActivity : AppCompatActivity() {
         binding = ActivityRepoDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val repo = intent.getParcelableExtra<Repository>("repo_data")?:run {
+        val repo = intent.getParcelableExtra<Repository>("repo_data") ?: run {
             finish()
             return
         }
+
+        // 新增仓库信息绑定
+        with(binding) {
+            tvRepoName.text = repo.name
+            tvDescription.text = repo.description ?: "无描述"
+            tvStars.text = "${repo.stars}"
+            tvForks.text = "${repo.forks}"
+            tvLanguage.text = repo.language ?: "未知语言"
+            tvUpdatedAt.text = "最后更新：${repo.updatedAt}"
+        }
+
         repo?.let {
             setupObservers()
             viewModel.loadRepoContent(
