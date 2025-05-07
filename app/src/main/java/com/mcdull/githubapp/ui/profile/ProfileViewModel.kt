@@ -9,7 +9,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mcdull.githubapp.data.AuthRepository
+import com.mcdull.githubapp.model.Repository
 import com.mcdull.githubapp.network.OAuthClient
+import com.mcdull.githubapp.network.RetrofitClient
 import com.mcdull.githubapp.user.UserManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -60,6 +62,22 @@ class ProfileViewModel @Inject constructor(
             } catch (e: Exception) {
                 Log.e(TAG, "handleAuthCallback: error", e)
                 _authState.value = AuthState.Error("令牌交换失败: ${e.message}")
+            }
+        }
+    }
+
+    private val _repositories = MutableLiveData<List<Repository>>()
+    val repositories: LiveData<List<Repository>> = _repositories
+
+    fun loadUserRepositories(token: String) {
+        viewModelScope.launch {
+            try {
+                val response = RetrofitClient.apiService.getUserRepositories("Bearer $token")
+                if (response.isSuccessful) {
+                    _repositories.value = response.body()
+                }
+            } catch (e: Exception) {
+                _authState.value = AuthState.Error("获取仓库失败: ${e.message}")
             }
         }
     }

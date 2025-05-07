@@ -7,16 +7,3 @@ data class GitHubSearchResponse(
     @SerializedName("incomplete_results") val incompleteResults: Boolean,
     @SerializedName("items") val items: List<Repository>
 )
-
-data class Repository(
-    @SerializedName("id") val id: Long,
-    @SerializedName("name") val name: String,
-    @SerializedName("full_name") val fullName: String,
-    @SerializedName("html_url") val htmlUrl: String,
-    @SerializedName("description") val description: String?,
-    @SerializedName("stargazers_count") val stars: Int,
-    @SerializedName("watchers_count") val watchers: Int,
-    @SerializedName("language") val language: String,
-    @SerializedName("created_at") val createdAt: String,
-    @SerializedName("updated_at") val updatedAt: String
-)
