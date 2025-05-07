@@ -5,10 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.google.gson.Gson
 import com.mcdull.githubapp.databinding.FragmentHomeBinding
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.mcdull.githubapp.R
 
 class HomeFragment : Fragment() {
 
@@ -29,15 +34,21 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        homeViewModel.repositories.observe(viewLifecycleOwner) {
-            textView.text = Gson().toJson(it)
+        val recyclerView: RecyclerView = binding.reposRecyclerView // 假设布局中已定义该ID
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        val adapter = RepoAdapter()
+        recyclerView.adapter = adapter
+        recyclerView.addItemDecoration(
+            DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL).apply {
+                ContextCompat.getDrawable(requireContext(), R.drawable.divider)?.let {
+                    setDrawable(it)
+                }
+            }
+        )
+        homeViewModel.repositories.observe(viewLifecycleOwner) { repos ->
+            adapter.submitList(repos?.items)
         }
+        
         return root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }
