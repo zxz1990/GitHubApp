@@ -36,12 +36,10 @@
 
     </LinearLayout>
 
-    <!-- 在语言选择器下方添加 -->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!-- 原有内容 -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvSearchResults"
             android:layout_width="match_parent"
@@ -49,7 +47,6 @@
             android:padding="8dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-        <!-- 新增加载指示 -->
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"

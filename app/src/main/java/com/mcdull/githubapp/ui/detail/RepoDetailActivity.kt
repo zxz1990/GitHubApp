@@ -37,7 +37,6 @@ class RepoDetailActivity : AppCompatActivity() {
             return
         }
 
-        // 新增仓库信息绑定
         with(binding) {
             tvRepoName.text = repo.name
             tvDescription.text = repo.description ?: "无描述"
@@ -55,7 +54,6 @@ class RepoDetailActivity : AppCompatActivity() {
                 path = ""  // 根据实际需求设置path参数
             )
         }
-        // 新增登录状态观察
         userManager.accessToken.observe(this) { token ->
             if (token != null) {
                 binding.fabSubmitIssue.apply {

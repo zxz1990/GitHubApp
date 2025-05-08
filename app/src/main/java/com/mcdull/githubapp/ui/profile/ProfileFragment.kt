@@ -57,7 +57,6 @@ class ProfileFragment : Fragment() {
             }
         }
 
-        // 新增登录状态观察
         userManager.accessToken.observe(viewLifecycleOwner) { token ->
             if (token != null) {
                 showLoggedInUI()
@@ -70,7 +69,6 @@ class ProfileFragment : Fragment() {
         }
     }
 
-    // 新增登出按钮设置
     private fun setupLogoutButton() {
         binding.btnLogout.setOnClickListener {
             userManager.clearAuth()
@@ -131,6 +129,6 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupLogoutButton() // 新增初始化登出按钮
+        setupLogoutButton()
     }
 }
