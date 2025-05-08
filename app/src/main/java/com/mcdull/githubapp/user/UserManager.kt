@@ -26,6 +26,10 @@ class UserManager @Inject constructor(
         value = prefs.getString(TOKEN_KEY, null)
     }
     val accessToken: LiveData<String?> = _accessToken
+//
+//    fun isLoggedIn() {
+//        return accessToken.value!=null
+//    }
 
     fun saveToken(token: String) {
         prefs.edit().apply {

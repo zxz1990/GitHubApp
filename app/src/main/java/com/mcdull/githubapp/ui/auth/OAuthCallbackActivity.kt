@@ -43,7 +43,7 @@ class OAuthCallbackActivity : AppCompatActivity() {
 
         viewModel.authState.observe(this) {
             if (it is AuthState.Success) {
-                Toast.makeText(this, "授权成功: ${it.token}", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "授权成功", Toast.LENGTH_LONG).show()
                 finish()
             } else if (it is AuthState.Error) {
                 Toast.makeText(this, "授权失败", Toast.LENGTH_LONG).show()

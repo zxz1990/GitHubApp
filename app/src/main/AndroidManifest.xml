@@ -39,5 +39,6 @@
             </intent-filter>
         </activity>
         <activity android:name="com.mcdull.githubapp.ui.detail.RepoDetailActivity" />
+        <activity android:name="com.mcdull.githubapp.ui.issue.CreateIssueActivity" />
     </application>
 </manifest>

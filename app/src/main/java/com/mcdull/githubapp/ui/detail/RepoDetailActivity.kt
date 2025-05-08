@@ -1,6 +1,8 @@
 package com.mcdull.githubapp.ui.detail
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -9,7 +11,10 @@ import com.mcdull.githubapp.databinding.ActivityRepoDetailBinding
 import com.mcdull.githubapp.model.ContentResponse
 import com.mcdull.githubapp.model.Repository
 import com.mcdull.githubapp.model.Result
+import com.mcdull.githubapp.ui.issue.CreateIssueActivity
+import com.mcdull.githubapp.user.UserManager
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class RepoDetailActivity : AppCompatActivity() {
@@ -18,10 +23,14 @@ class RepoDetailActivity : AppCompatActivity() {
 
     private lateinit var adapter: ContentAdapter
 
+    @Inject
+    lateinit var userManager: UserManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRepoDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         val repo = intent.getParcelableExtra<Repository>("repo_data") ?: run {
             finish()
@@ -45,6 +54,25 @@ class RepoDetailActivity : AppCompatActivity() {
                 repo = it.name,
                 path = ""  // 根据实际需求设置path参数
             )
+        }
+        // 新增登录状态观察
+        userManager.accessToken.observe(this) { token ->
+            if (token != null) {
+                binding.fabSubmitIssue.apply {
+                    show()
+                    setOnClickListener {
+                        startActivity(
+                            Intent(
+                                this@RepoDetailActivity,
+                                CreateIssueActivity::class.java
+                            ).apply {
+                                putExtra("owner", repo.owner.login)
+                                putExtra("repo", repo.name)
+                            })
+                    }
+                }
+            } else {
+            }
         }
         adapter = ContentAdapter { content ->
             if (content.type == "dir") {
