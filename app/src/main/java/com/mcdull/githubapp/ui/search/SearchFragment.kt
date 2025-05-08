@@ -42,7 +42,7 @@ class SearchFragment : Fragment() {
         
         binding.searchButton.setOnClickListener {
             val query = binding.searchInput.text.toString()
-            val language = "Kotlin" // 可改为从UI选择
+            val language = binding.languageSpinner.selectedItem.toString()
             viewModel.searchRepositories(query, language)
         }
     
