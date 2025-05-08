@@ -39,20 +39,14 @@ Android版GitHub客户端，提供仓库浏览、代码查看、问题提交等�
 
 ## 部分UML图及数据流图
 
-- 搜索页UML
-- 
-  ![搜索](img/search_uml.png)
-- 
+- 搜索页UML 
+- ![搜索](img/search_uml.png)
 - 搜索页数据流
-- 
-  ![搜索](img/search_flow.png)
+- ![搜索](img/search_flow.png)
 - 个人页UML
-- 
-  ![个人页](img/profile_uml.png)
-- 
+- ![个人页](img/profile_uml.png)
 - 个人页数据流
-- 
-  ![个人页](img/profile_flow.png)
+- ![个人页](img/profile_flow.png)
 
 ## 截图展示
 
