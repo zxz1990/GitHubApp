@@ -8,4 +8,5 @@
     <string name="search_hint">输入搜索关键词</string>
     <string name="search">搜索</string>
     <string name="recently_popular_repos">近七日最火Repo</string>
+    <string name="author">Author: %1$s</string>
 </resources>

@@ -24,8 +24,10 @@ class RepoAdapter : ListAdapter<Repository, RepoAdapter.ViewHolder>(RepoDiffCall
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val name: TextView = itemView.findViewById(R.id.repoName)
         val description: TextView = itemView.findViewById(R.id.repoDescription)
+        val author: TextView = itemView.findViewById(R.id.repoAuthor)
         val stars: TextView = itemView.findViewById(R.id.repoStars)
-        
+        val language: TextView = itemView.findViewById(R.id.repoLanguage)
+
         init {
             itemView.setOnClickListener {
                 val repo = getItem(adapterPosition)
@@ -51,7 +53,9 @@ class RepoAdapter : ListAdapter<Repository, RepoAdapter.ViewHolder>(RepoDiffCall
         getItem(position)?.let { repo ->
             holder.name.text = repo.name
             holder.description.text = repo.description ?: ""
+            holder.author.text = holder.author.context.getString(R.string.author, repo.owner.login)
             holder.stars.text = repo.stars.toString()
+            holder.language.text = repo.language ?: "N/A"
         }
     }
 
