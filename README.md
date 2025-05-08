@@ -24,27 +24,6 @@ Android版GitHub客户端，提供仓库浏览、代码查看、问题提交等�
 - 单元测试:[app-debug-androidTest.apk](apk/app-debug-androidTest.apk)
   ，安装主程序apk和单元测试apk后，再执行如下命令即可（目前还需要点一下主程序才可执行）：
   adb shell am instrument -w com.mcdull.githubapp.test/androidx.test.runner.AndroidJUnitRunner
-
-## 截图展示
-
-- 主页
-  ![主页](img/home.png)
-- 搜索页
-  ![搜索页](img/search.png)
-- 详情页首页
-  ![仓库详情](img/repo_detail_home.png)
-- 详情页子目录页
-  ![仓库详情](img/repo_detail_sub.png)
-- 个人页已登录
-  ![个人页](img/profile_login.png)
-- 个人页未登录
-  ![个人页](img/profile_unlogin.png)
-- OAuth授权界面
-  ![OAuth](img/oauth.png)
-- 提交问题页
-  ![问题提交](img/raise_issue.png)
-- 横屏展示
-  ![横屏](img/landscape.png)
 - 单元测试结果
   ![单元测试](img/android_test.png)
 
@@ -67,3 +46,24 @@ Android版GitHub客户端，提供仓库浏览、代码查看、问题提交等�
   ![个人页](img/profile_uml.png)
 - 个人页数据流
   ![个人页](img/profile_flow.png)
+
+## 截图展示
+
+- 主页
+  ![主页](img/home.png)
+- 搜索页
+  ![搜索页](img/search.png)
+- 详情页首页
+  ![仓库详情](img/repo_detail_home.png)
+- 详情页子目录页
+  ![仓库详情](img/repo_detail_sub.png)
+- 个人页已登录
+  ![个人页](img/profile_login.png)
+- 个人页未登录
+  ![个人页](img/profile_unlogin.png)
+- OAuth授权界面
+  ![OAuth](img/oauth.png)
+- 提交问题页
+  ![问题提交](img/raise_issue.png)
+- 横屏展示
+  ![横屏](img/landscape.png)
