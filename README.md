@@ -24,6 +24,7 @@ Android版GitHub客户端，提供仓库浏览、代码查看、问题提交等�
 ## 技术栈
 - Kotlin + Jetpack
 - MVVM 架构
+- Hilt 框架
 - Retrofit + OkHttp
 - Espresso 单元测试
 - GitHub REST API v3
