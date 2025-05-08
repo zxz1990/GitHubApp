@@ -11,6 +11,7 @@ Android版GitHub客户端，提供仓库浏览、代码查看、问题提交等�
 
 ## 已知问题
 - 功能粗糙，界面不够美观
+- Trending Topics还未做
 - raise issue接口还未调通
 - 单元测试只写了2个简单的搜索页面的UI测试case
 
